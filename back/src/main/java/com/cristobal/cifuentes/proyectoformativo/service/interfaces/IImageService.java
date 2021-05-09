@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.cristobal.cifuentes.proyectoformativo.model.entity.Image;
 
+import javassist.NotFoundException;
+
 public interface IImageService {
 	
-	public Image getImageById(int idImage);
+	public Image getImageById(int idImage) throws NotFoundException;
 	
 	public Image saveImage(Image image);
 	
@@ -14,7 +16,7 @@ public interface IImageService {
 	
 	public boolean deleteById(int Id);
 	
-	public Image editImage(Image image);
+	public Image updateImage(Image image);
 	
 	
 
