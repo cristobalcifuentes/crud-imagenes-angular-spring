@@ -52,7 +52,15 @@ public class ImageServiceImplement implements IImageService {
 	@Override
 	public Image updateImage(Image image) {
 		
-		return imageRep.save(image);
+		Optional<Image> optionalImage = imageRep.findById(image.getId());
+		
+		if(optionalImage.isPresent()) {
+			Image newImage = optionalImage.get();
+			newImage.setDescription(image.getDescription());
+			newImage.setTitle(image.getTitle());
+			return imageRep.save(newImage);
+		} else throw new ModelNotFoundException( "id "+ image.getId() + " no encontrado");
+		
 	}
 
 }
